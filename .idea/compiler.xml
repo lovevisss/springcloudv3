@@ -7,11 +7,18 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
+        <module name="cloud-provider-payment8002" />
         <module name="mybatis_gen2024" />
-        <module name="cloud-consumer-order80" />
+        <module name="cloud-provider-payment8001 (1)" />
         <module name="cloud-api-commons" />
-        <module name="cloud-provider-payment8001" />
+        <module name="cloud-provider-payment8001 (2)" />
+        <module name="cloud-consumer-order80" />
+        <module name="cloud-consumer-feign-order80" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="cloud-provider-payment8001" target="17" />
+      <module name="cloud-provider-payment8002" target="17" />
+    </bytecodeTargetLevel>
   </component>
 </project>

@@ -3,10 +3,11 @@ server:
 
 spring:
   application:
-      name: cloud-consumer-order
+    name: cloud-consumer-feign-order
   cloud:
     consul:
       host: localhost
       port: 8500
       discovery:
-          service-name: ${spring.application.name}
+        service-name: ${spring.application.name}
+        prefer-ip-address: true

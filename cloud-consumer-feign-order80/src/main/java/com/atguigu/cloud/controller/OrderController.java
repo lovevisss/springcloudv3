@@ -1,25 +1,27 @@
 package com.atguigu.cloud.controller;
 
+import com.atguigu.cloud.apis.PayFeignApi;
 import com.atguigu.cloud.entities.PayDTO;
 import com.atguigu.cloud.resp.ResultData;
-import com.atguigu.cloud.resp.ReturnCodeEnum;
 import jakarta.annotation.Resource;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 @RestController
 public class OrderController {
+
+    @Resource
+    private PayFeignApi payFeignApi;
 
     public static final String PAYMENT_URL = "http://cloud-payment-service";
 
     @Resource
     private RestTemplate restTemplate;
 
-    @GetMapping("/consumer/pay/add")
-    public ResultData addOrder(PayDTO payDTO) {
-        return restTemplate.postForObject(PAYMENT_URL + "/pay/add", payDTO, ResultData.class);
+    @PostMapping("/feign/pay/add")
+    public ResultData addOrder(@RequestBody PayDTO payDTO) {
+        ResultData resultData = payFeignApi.addPay(payDTO);
+        return resultData;
     }
 
     @GetMapping("/consumer/pay/get/{id}")
